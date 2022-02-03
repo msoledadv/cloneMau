@@ -2,6 +2,7 @@ package coleccionesejercicio005.servicios;
 
 import coleccionesejercicio005.entidades.Pais;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -32,7 +33,27 @@ public class ServicioPais {
     public static Comparator<Pais> ordenarAlfabetico = new Comparator<Pais>() {
         @Override
         public int compare(Pais p1, Pais p2) {
-            return p2.getNombre().compareTo(p1.getNombre());
+            return p1.getNombre().compareTo(p2.getNombre());
         }
     };
+    
+    public void buscarYEliminarPaisLista(List<Pais> lp){
+        System.out.println("Ingrese el pais a remover");
+        String buscarPais = sc.next();
+        Integer contador = 0;
+        Iterator it = lp.iterator();
+        while (it.hasNext()) {
+            Pais pais = (Pais) it.next();
+            if (pais.getNombre().equalsIgnoreCase(buscarPais)) {
+                it.remove();
+                contador++;
+            }
+        }
+        if (contador == 0) {
+            System.out.println("No se encontro el pais a remover");
+        } else {
+            System.out.println("El pais " + buscarPais + " se encontro y fue removido de la lista");
+            
+        }
+    }
 }
